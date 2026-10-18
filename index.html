@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Semangat Terus, Friendss!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#ffb35c; --bg2:#ffe289; --card:#fff6e3; --text:#b71c1c; --muted:#c0504a;
+  --accent:#d84315; --sun:#ffc23d; --accent-soft:#ffe3b8; --line:#f2c27c; --shadow:rgba(150,60,0,.25);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark; --bg1:#7a3a0a; --bg2:#80600f; --card:#5c2a0b; --text:#ff9a9a; --muted:#ffb4a8;
+    --accent:#e85d1f; --sun:#ffd166; --accent-soft:#74391a; --line:#97532a; --shadow:rgba(0,0,0,.4);
+  }
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);
+  background:linear-gradient(160deg,var(--bg1),var(--bg2));background-attachment:fixed;overflow-x:hidden}
+.sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.sky span{position:absolute;bottom:-40px;color:#fff;opacity:.5;animation:float linear infinite}
+@keyframes float{to{transform:translateY(-115vh) rotate(40deg);opacity:0}}
+main{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:28px 16px 48px}
+h1{font-style:italic;font-weight:800;font-size:clamp(1.8rem,6vw,2.6rem);text-align:center;margin:8px 0 22px}
+nav{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:26px}
+nav button{font:inherit;font-size:.88rem;font-weight:700;color:var(--text);background:var(--card);border:0;border-radius:999px;
+  padding:8px 18px;cursor:pointer;box-shadow:0 4px 12px var(--shadow);display:flex;gap:7px;align-items:center;transition:transform .15s}
+nav button i{font-style:normal;color:var(--sun);text-shadow:0 0 1px rgba(0,0,0,.25)}
+nav button:hover{transform:translateY(-2px)}
+nav button[aria-selected="true"]{background:var(--accent);color:#fff}
+nav button[aria-selected="true"] i{color:#fff;text-shadow:none}
+button:focus-visible,input:focus-visible,textarea:focus-visible,.songs li:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.panel{background:var(--card);border-radius:20px;padding:30px;box-shadow:0 10px 30px var(--shadow);width:min(100%,520px);margin:0 auto}
+.panel.wide{width:100%}
+.panel h2{margin:0 0 14px;font-style:italic;font-weight:800;color:var(--accent)}
+#lock{text-align:center;animation:pop .8s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+#lock h2{font-size:1.15rem;margin-bottom:6px}
+#lock p{margin:0 0 18px;font-size:.88rem;color:var(--muted)}
+label{display:block;text-align:left;font-size:.8rem;font-weight:600;color:var(--muted);margin:12px 0 6px}
+input[type=password],textarea{width:100%;font:inherit;font-size:.95rem;color:var(--text);background:var(--accent-soft);
+  border:1.5px solid var(--line);border-radius:12px;padding:12px 14px}
+textarea{resize:vertical;min-height:70px}
+.btn{font:inherit;font-weight:700;font-size:.92rem;color:#fff;background:var(--accent);border:0;border-radius:12px;padding:12px 22px;cursor:pointer;margin-top:16px;box-shadow:0 6px 16px var(--shadow)}
+.btn:hover{filter:brightness(1.07)}
+.err{color:#d14343;font-size:.82rem;min-height:1.2em;margin:10px 0 0}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+section[hidden]{display:none}
+.msg p{line-height:1.85;font-size:1rem;margin:0 0 14px;max-width:62ch}
+.sign{text-align:right;font-style:italic;font-weight:700;color:var(--accent)}
+.songs{list-style:none;padding:0;margin:0 0 18px}
+.songs li{padding:12px 14px;border-radius:12px;background:var(--accent-soft);margin-bottom:8px;display:flex;justify-content:space-between;gap:10px;font-size:.92rem;font-weight:600}
+.songs li.play{cursor:pointer;transition:transform .15s}
+.songs li.play:hover{transform:translateX(3px)}
+.songs li.on{background:var(--accent);color:#fff}
+.songs li.on small{color:#fff}
+.songs small{color:var(--muted);font-weight:400}
+audio{width:100%;margin-top:14px}
+.card{background:linear-gradient(135deg,var(--sun),#ffe29a);color:#b71c1c;border-radius:18px;padding:26px 22px;text-align:center;font-size:1.15rem;font-weight:800;line-height:1.5;min-height:120px;display:grid;place-items:center}
+.card.flip{animation:pop .5s both}
+.todo{display:flex;align-items:center;gap:10px;background:var(--accent-soft);border-radius:12px;padding:10px 14px;margin-top:8px;font-size:.92rem}
+.todo input{width:20px;height:20px;accent-color:var(--accent)}
+.todo.done span{text-decoration:line-through;color:var(--muted)}
+.todo button{margin-left:auto;border:0;background:none;color:var(--muted);cursor:pointer;font-size:1.1rem}
+.row{display:flex;gap:8px;margin-top:6px}
+.row textarea{min-height:0;height:46px;resize:none}
+.row .btn{margin:0;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:16px}
+.tile{aspect-ratio:1;border-radius:16px;overflow:hidden;background:var(--accent-soft);display:grid;place-items:center;color:var(--sun);font-size:2rem;position:relative}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile em{position:absolute;left:0;right:0;bottom:0;padding:6px 10px;font-size:.74rem;font-style:normal;font-weight:700;color:#fff;background:linear-gradient(transparent,rgba(10,50,60,.65))}
+.hint{font-size:.82rem;color:var(--muted);margin:0}
+h3{margin:22px 0 0;font-size:.95rem}
+@media (prefers-reduced-motion: reduce){.sky span,#lock,.card.flip{animation:none}nav button{transition:none}}
+</style>
+</head>
+<body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+<main>
+  <h1 id="title">Semangat Terus, Sahabat!</h1>
+
+  <nav role="tablist" aria-label="Menu">
+    <button role="tab" data-tab="msg" aria-selected="true"><i>★</i>Pesan</button>
+    <button role="tab" data-tab="music" aria-selected="false"><i>♪</i>Musik</button>
+    <button role="tab" data-tab="boost" aria-selected="false"><i>✦</i>Semangat</button>
+    <button role="tab" data-tab="gallery" aria-selected="false"><i>❀</i>Kenangan</button>
+  </nav>
+
+  <div class="panel" id="lock">
+    <h2>Ada kejutan buat kamu</h2>
+    <p id="hintText"></p>
+    <label for="pw">Password</label>
+    <input type="password" id="pw" autocomplete="off" placeholder="Ketik password…">
+    <p class="err" id="err" role="alert"></p>
+    <button class="btn" id="open">Buka</button>
+  </div>
+
+  <section id="msg" class="panel wide msg" hidden>
+    <h2 id="msgTitle"></h2>
+    <div id="msgBody"></div>
+    <p class="sign" id="sign"></p>
+  </section>
+
+  <section id="music" class="panel wide" hidden>
+    <h2>Lagu penyemangat</h2>
+    <ul class="songs" id="songs"></ul>
+    <audio id="player" controls hidden></audio>
+    <label for="audioFile">Atau putar lagu dari perangkatmu</label>
+    <input type="file" id="audioFile" accept="audio/*">
+  </section>
+
+  <section id="boost" class="panel wide" hidden>
+    <h2>Kartu semangat</h2>
+    <div class="card" id="quote">Tekan tombol di bawah untuk ambil satu kartu.</div>
+    <button class="btn" id="draw">Ambil kartu semangat</button>
+    <h3>Target kecil hari ini</h3>
+    <p class="hint">Mulai dari yang paling ringan. Centang kalau sudah selesai.</p>
+    <div class="row">
+      <textarea id="todoText" aria-label="Target baru" placeholder="Contoh: minum air 8 gelas"></textarea>
+      <button class="btn" id="addTodo">Tambah</button>
+    </div>
+    <div id="todoList"></div>
+  </section>
+
+  <section id="gallery" class="panel wide" hidden>
+    <h2>Foto penghancur mood</h2>
+    <p class="hint">Foto yang kamu tambahkan di sini hanya tampil di perangkat ini dan tidak diunggah ke mana pun.</p>
+    <label for="photoFile">Tambah foto</label>
+    <input type="file" id="photoFile" accept="image/*" multiple>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+
+<script>
+/* ====== UBAH BAGIAN INI ======
+   Foto & lagu: taruh file di folder foto/ dan lagu/, lalu isi "src" dengan path-nya, contoh:
+   foto : "foto/nama.jpg"
+   lagu : "lagu/nama.mp3"
+   Kalau "src" dikosongkan, foto tampil sebagai kotak bintang dan lagu hanya daftar. */
+const CONFIG = {
+  password: "tamfir",
+  hint: "Petunjuk: Tempat yang biasa kita bercandain.",
+  title: "Semangat Terus, Friendss!",
+  msgTitle: "Buat kamu yang lagi ambis buat uts",
+  msg: [
+    "Gw tahu belakangan lu fokus belajar. Tapi gw ngerasain seberapa keras lu berusaha, dan itu bukan hal kecil.",
+    "Boleh capek, boleh istirahat, boleh overthinking sebentar. Yang penting jangan merasa sendirian, karena bakal fast respon kalo lu chat.",
+    "Lu udah berusaha kok. jadi nanti uts jangan terlalu ambil pressure.",
+    "Kalo lagi mumet lu ada badut yang siap bikin lu ketawa.",
+    "Semangat terus,Kenn!!!"
+  ],
+  sign: "Teman lu ini bakal nemenin kok",
+  songs: [
+    { t: "Superpower", a: "Daniel Caesar", src: "lagu/superpower.mp3" },
+    { t: "Best Friend", a: "Rex Orange County", src: "lagu/best-friend.mp3" },
+    { t: "Enchanted", a: "Taylor Swift", src: "lagu/enchanted.mp3" },
+    { t: "Cinderella", a: "Mac Miller ft. Ty Dolla $ign", src: "lagu/cinderella.mp3" },
+    { t: "Ain’t In LA", a: "ADÉLA", src: "lagu/aint-in-la.mp3" }
+  ],
+  quotes: [
+    "Pelan-pelan bae dul, asal lu enggak berhenti.",
+    "Hari buruk bukan berarti hidup yang buruk.",
+    "lu lebih kuat dari yang lu kira.",
+    "Istirahat itu bagian dari perjalanan, bukan tanda menyerah.",
+    "Gagal sekali bukan akhir. Itu cara belajar yang jujur.",
+    "Just be Yourself, because that’s what makes you unique.",
+    "lu tidak harus sempurna gw selalu kagumin lu apa adanya."
+  ],
+  photos: [
+    { src: "foto/justin-biber.jpg", cap: "justin biber" },
+    { src: "foto/kiyowoo.jpg", cap: "KIYOWOO" },
+    { src: "foto/badut.jpg", cap: "BADUT" },
+    { src: "foto/meme-lucu.jpg", cap: "Meme lucu" },
+    { src: "foto/kucing-lucu.jpg", cap: "Kucing lucu" }
+  ]
+};
+/* ============================= */
+
+const $ = s => document.querySelector(s);
+const tabs = [...document.querySelectorAll("nav button")];
+const IDS = ["msg","music","boost","gallery"];
+let unlocked = false, current = "msg";
+
+$("#title").textContent = CONFIG.title;
+$("#hintText").textContent = CONFIG.hint;
+$("#msgTitle").textContent = CONFIG.msgTitle;
+CONFIG.msg.forEach(t => { const p = document.createElement("p"); p.textContent = t; $("#msgBody").append(p); });
+$("#sign").textContent = CONFIG.sign;
+
+// daftar lagu (klik untuk memutar kalau ada src)
+CONFIG.songs.forEach(s => {
+  const li = document.createElement("li");
+  const a = document.createElement("span"); a.textContent = "▶  " + s.t;
+  const b = document.createElement("small"); b.textContent = s.a;
+  li.append(a, b);
+  if (s.src || s.t) {
+    li.className = "play"; li.tabIndex = 0; li.setAttribute("role", "button");
+    const go = () => {
+      if (!s.src) {
+        window.open("https://www.youtube.com/results?search_query=" + encodeURIComponent(s.t + " " + s.a), "_blank", "noopener");
+        return;
+      }
+      const p = $("#player"); p.src = s.src; p.hidden = false; p.play().catch(() => {});
+      document.querySelectorAll(".songs li").forEach(x => x.classList.remove("on"));
+      li.classList.add("on");
+    };
+    li.addEventListener("click", go);
+    li.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+  }
+  $("#songs").append(li);
+});
+
+// galeri foto
+CONFIG.photos.forEach(p => {
+  const d = document.createElement("div"); d.className = "tile";
+  if (p.src) {
+    const img = document.createElement("img"); img.src = p.src; img.alt = p.cap; d.append(img);
+  } else {
+    d.append(document.createTextNode("★"));
+  }
+  const em = document.createElement("em"); em.textContent = p.cap; d.append(em);
+  $("#grid").append(d);
+});
+
+// bintang melayang
+for (let i = 0; i < 16; i++) {
+  const s = document.createElement("span");
+  s.textContent = "★";
+  s.style.left = Math.random() * 100 + "%";
+  s.style.fontSize = (12 + Math.random() * 24) + "px";
+  s.style.animationDuration = (9 + Math.random() * 12) + "s";
+  s.style.animationDelay = (-Math.random() * 20) + "s";
+  $("#sky").append(s);
+}
+
+function show(name) {
+  current = name;
+  tabs.forEach(t => t.setAttribute("aria-selected", t.dataset.tab === name));
+  IDS.forEach(id => $("#" + id).hidden = !(unlocked && id === name));
+  $("#lock").hidden = unlocked;
+}
+tabs.forEach(t => t.addEventListener("click", () => show(t.dataset.tab)));
+show("msg");
+
+function tryOpen() {
+  if ($("#pw").value.trim().toLowerCase() === CONFIG.password.toLowerCase()) { unlocked = true; show(current); }
+  else {
+    $("#err").textContent = "Password salah. masa enggak tau .";
+    const l = $("#lock"); l.classList.remove("shake"); void l.offsetWidth; l.classList.add("shake");
+  }
+}
+$("#open").addEventListener("click", tryOpen);
+$("#pw").addEventListener("keydown", e => { if (e.key === "Enter") tryOpen(); });
+
+$("#audioFile").addEventListener("change", e => {
+  const f = e.target.files[0]; if (!f) return;
+  const p = $("#player"); p.src = URL.createObjectURL(f); p.hidden = false; p.play().catch(() => {});
+});
+
+$("#photoFile").addEventListener("change", e => {
+  [...e.target.files].forEach(f => {
+    const d = document.createElement("div"); d.className = "tile";
+    const img = document.createElement("img"); img.src = URL.createObjectURL(f); img.alt = "Foto kenangan";
+    d.append(img); $("#grid").prepend(d);
+  });
+});
+
+// kartu semangat (tidak mengulang kartu yang sama berturut-turut)
+let last = -1;
+$("#draw").addEventListener("click", () => {
+  let i; do { i = Math.floor(Math.random() * CONFIG.quotes.length); } while (i === last && CONFIG.quotes.length > 1);
+  last = i;
+  const q = $("#quote"); q.textContent = CONFIG.quotes[i];
+  q.classList.remove("flip"); void q.offsetWidth; q.classList.add("flip");
+});
+
+// target kecil
+let todos = [];
+try { todos = JSON.parse(localStorage.getItem("friendTodos") || "[]"); } catch (e) {}
+const saveTodos = () => { try { localStorage.setItem("friendTodos", JSON.stringify(todos)); } catch (e) {} };
+function renderTodos() {
+  const box = $("#todoList"); box.innerHTML = "";
+  todos.forEach((t, i) => {
+    const d = document.createElement("div"); d.className = "todo" + (t.done ? " done" : "");
+    const c = document.createElement("input"); c.type = "checkbox"; c.checked = t.done;
+    c.setAttribute("aria-label", "Selesai");
+    c.onchange = () => { t.done = c.checked; saveTodos(); renderTodos(); };
+    const s = document.createElement("span"); s.textContent = t.text;
+    const x = document.createElement("button"); x.textContent = "✕"; x.setAttribute("aria-label", "Hapus target");
+    x.onclick = () => { todos.splice(i, 1); saveTodos(); renderTodos(); };
+    d.append(c, s, x); box.append(d);
+  });
+}
+$("#addTodo").addEventListener("click", () => {
+  const v = $("#todoText").value.trim(); if (!v) return;
+  todos.push({ text: v, done: false }); $("#todoText").value = ""; saveTodos(); renderTodos();
+});
+renderTodos();
+</script>
+</body>
+</html>
